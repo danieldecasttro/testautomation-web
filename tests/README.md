@@ -53,6 +53,11 @@ After the environment setup described above, run the test scenarios following th
 
 ---
 
+## GitHub Actions Workflow
+[![Test Automation Workflow](https://github.com/danieldecasttro/testautomation-web/actions/workflows/testcafe.yml/badge.svg)](https://github.com/danieldecasttro/testautomation-web/actions/workflows/testcafe.yml)
+
+---
+
 Author: Daniel Castro<br>
 E-mail: [daniel@kodeout.tk](mailto:daniel@kodeout.tk)<br>
 Phone: (+31) 0619722574
