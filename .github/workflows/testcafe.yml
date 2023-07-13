@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  test:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,7 +26,13 @@ jobs:
 
       - name: Start HTTP server
         run: npx http-server -p 8080
+        background: true
 
+  test:
+    needs: deploy
+    runs-on: ubuntu-latest
+
+    steps:
       - name: Run tests
         run: npm test
 
