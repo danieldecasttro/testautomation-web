@@ -54,7 +54,12 @@ After the environment setup described above, run the test scenarios following th
 ---
 
 ## GitHub Actions Workflow
+
+If you don't want to perform the setup and execution steps described above you can use a workflow created in the GitHub repository using Actions:
+
 [![Test Automation Workflow](https://github.com/danieldecasttro/testautomation-web/actions/workflows/testcafe.yml/badge.svg)](https://github.com/danieldecasttro/testautomation-web/actions/workflows/testcafe.yml)
+
+It's triggered automatically when a new commit is pushed, so you can see the results of the previous execution.
 
 ---
 
