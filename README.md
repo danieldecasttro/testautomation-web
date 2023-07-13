@@ -15,3 +15,7 @@ Good luck!
 PS. We don't expect you to spend weeks (and sleepless nights) on doing it. Lets see how far you can get in 6-10 hours. We want to see how you approach and solve problems.
 
 And you will find the users to login in users.js.
+
+---
+
+Check the solution [HERE](./tests/README.md)
