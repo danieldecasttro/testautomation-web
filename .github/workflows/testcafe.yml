@@ -28,11 +28,6 @@ jobs:
         run: npx http-server -p 8080 > /dev/null 2>&1 &
           echo "HTTP server started."
 
-  test:
-    needs: deploy
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Run tests
         run: npm test
 
