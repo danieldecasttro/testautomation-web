@@ -1,0 +1,30 @@
+{
+  "name": "testautomation-web",
+  "version": "1.0.0",
+  "description": "We are looking for Automation Engineers that have the mindset \"only the sky is the limit\" and \"automation doesn't stop at testing, it's just a beginning!\" ;)",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier . --write",
+    "test": "testcafe chrome:headless tests",
+    "test:headful": "testcafe chrome tests",
+    "test:firefox": "testcafe firefox:headless tests",
+    "test:firefox:headful": "testcafe firefox tests",
+    "test:safari": "testcafe safari:headless tests",
+    "test:all": "testcafe chrome:headless,firefox:headless tests",
+    "test:all:headful": "testcafe chrome,firefox,safari tests"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "prettier": "^3.0.0",
+    "testcafe": "^3.0.1",
+    "testcafe-reporter-spec": "^2.2.0",
+    "testcafe-reporter-html": "^1.4.6",
+    "testcafe-reporter-json": "^2.2.0"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
