@@ -14,7 +14,7 @@ const getLocalStorageItem = ClientFunction((key) => {
 fixture('Login')
   .page('http://localhost:8080')
   .beforeEach(async (t) => {
-    // Instantiate an object for the LoginPage class
+    // Create an instance of the Login page
     t.ctx.loginPage = createPage('login');
   });
 
@@ -44,18 +44,20 @@ test('Validate the page layout: footer content', async (t) => {
   await t.expect(footerText).contains(loginPage.footerText);
 });
 
+// Iterates over the elements of the validCredentials array and use them in the following test
 validCredentials.forEach((user) => {
   test('Successful login', async (t) => {
     const { loginPage } = t.ctx;
     // Perform login action
     await loginPage.login(user.email, user.password);
 
-    // Assert that the logged email was stored in the key "logged" in local Storage
+    // Assert that the logged email was stored in the key "logged" in Local Storage
     const loggedInUser = await getLocalStorageItem('logged');
     await t.expect(loggedInUser).eql(user.email);
 
-    // Assert that the navigation nav is shown and the login section is NOT shown
+    // Create an instance of the Content page
     const contentPage = createPage('content');
+    // Assert that the navigation nav is shown and the login section is NOT shown
     await t
       .expect(Selector(loginPage.loginSection).getStyleProperty('display'))
       .eql('none');

@@ -10,12 +10,14 @@ const getLocalStorageItem = ClientFunction((key) => {
 fixture('Content')
   .page('http://localhost:8080')
   .beforeEach(async (t) => {
-    // Perform login
+    // Create an instance of the Login page
     t.ctx.loginPage = createPage('login');
+    // Perform login with the first email available in the data source data/testUsers.js
     await t.ctx.loginPage.login(
       validCredentials[0].email,
       validCredentials[0].password,
     );
+    // After performing the login we need an instance of the Content page
     t.ctx.contentPage = createPage('content');
   });
 

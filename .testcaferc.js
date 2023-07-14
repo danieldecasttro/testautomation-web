@@ -3,7 +3,7 @@ module.exports = {
 
   reporter: [
     {
-      name: 'spec',
+      name: 'spec', // Output in Terminal
     },
     {
       name: 'html',
