@@ -61,6 +61,9 @@ If you don't want to perform the setup and execution steps described above you c
 
 It's triggered automatically when a new commit is pushed, so you can see the results of the previous execution.
 
+If you want to run it again, click on `Rerun this job`:
+![img.png](img.png)
+
 ---
 
 Author: Daniel Castro<br>
