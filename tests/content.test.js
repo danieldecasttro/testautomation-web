@@ -1,14 +1,14 @@
 import { Selector, t, ClientFunction } from 'testcafe';
 import { validCredentials } from './data/testUsers';
 import { createPage } from './page-factory/factory';
-import { getText } from './helpers/utils';
+import { assertDisplayValue, assertText } from './helpers/assertions';
 
-const getLocalStorageItem = ClientFunction((key) => {
-  return localStorage.getItem(key);
-});
+const envConfig = require('./env.config');
+// Default to development if no TEST_ENV is provided by the execution script in package.json
+const env = process.env.TEST_ENV || 'development';
 
 fixture('Content')
-  .page('http://localhost:8080')
+  .page(envConfig[env].baseUrl)
   .beforeEach(async (t) => {
     // Create an instance of the Login page
     t.ctx.loginPage = createPage('login');
@@ -22,28 +22,31 @@ fixture('Content')
   });
 
 test('Validate the page layout: "navigation" nav visibility', async (t) => {
-  const { contentPage } = t.ctx;
-  await t
-    .expect(Selector(contentPage.navigationNav).getStyleProperty('display'))
-    .eql('flex');
+  await assertDisplayValue(t.ctx.contentPage.navigationNavSelector, 'flex');
 });
 
 test('Validate the page layout: "user" section visibility', async (t) => {
-  const { contentPage } = t.ctx;
-  await t
-    .expect(Selector(contentPage.userSection).getStyleProperty('display'))
-    .eql('inline-block');
+  await assertDisplayValue(
+    t.ctx.contentPage.userSectionSelector,
+    'inline-block',
+  );
 });
 
 test('Validate the page layout: "content" section visibility', async (t) => {
-  const { contentPage } = t.ctx;
-  await t
-    .expect(Selector(contentPage.contentSection).getStyleProperty('display'))
-    .eql('flex');
+  await assertDisplayValue(t.ctx.contentPage.contentSectionSelector, 'flex');
 });
 
 test('Validate the page content', async (t) => {
-  const { contentPage } = t.ctx;
-  const contentText = await getText(contentPage.contentSection);
-  await t.expect(contentText).contains(contentPage.contentText);
+  await assertText(
+    t.ctx.contentPage.contentSectionSelector,
+    t.ctx.contentPage.contentText,
+  );
+});
+
+test('Validate the page layout: footer visibility', async (t) => {
+  await assertDisplayValue(t.ctx.loginPage.footerSelector, 'flex');
+});
+
+test('Validate the page layout: footer content', async (t) => {
+  await assertText(t.ctx.loginPage.footerSelector, t.ctx.loginPage.footerText);
 });

@@ -1,5 +1,5 @@
 module.exports = {
-  concurrency: 2, // Maximum number of concurrent test sessions
+  concurrency: 3, // Maximum number of concurrent test sessions
 
   reporter: [
     {

@@ -22,20 +22,24 @@ The coding part is described below.
 In order to be able to run this project you have to install:
 
 ### Pre-requirements
+
 - **Git**
 - **NodeJS**
 
 ### Cloning the project
+
 - Open the Terminal
 - Run the following commands:
   - `git clone https://github.com/danieldecasttro/testautomation-web.git`
 
 ### Installing dependencies
+
 - Run the following commands:
   - `cd testautomation-web`
   - `npm install`
 
 ### Starting the HTTP Server
+
 - Run the command `npm run http-server`
 
 ---
@@ -47,7 +51,7 @@ After the environment setup described above, run the test scenarios following th
 - Run the following commands:
   - `npm run test`
     (It'll run on headless Chrome)
-- Verify the test run report: 
+- Verify the test run report:
   - on your Terminal output
   - navigating to the folder `reports` and opening the file `report.html` in the browser
 

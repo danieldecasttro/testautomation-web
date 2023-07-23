@@ -1,14 +1,21 @@
 import { Selector, t, ClientFunction } from 'testcafe';
 import { validCredentials } from './data/testUsers';
 import { createPage } from './page-factory/factory';
-import { getText } from './helpers/utils';
+import {
+  assertDisplayValue,
+  assertLocalStorageKeyValue,
+} from './helpers/assertions';
+
+const envConfig = require('./env.config');
+// Default to development if no TEST_ENV is provided by the execution script in package.json
+const env = process.env.TEST_ENV || 'development';
 
 const getLocalStorageItem = ClientFunction((key) => {
   return localStorage.getItem(key);
 });
 
 fixture('Logout')
-  .page('http://localhost:8080')
+  .page(envConfig[env].baseUrl)
   .beforeEach(async (t) => {
     // Perform login
     t.ctx.loginPage = createPage('login');
@@ -20,20 +27,13 @@ fixture('Logout')
   });
 
 test('Successful logout', async (t) => {
-  const { contentPage } = t.ctx;
-  await contentPage.clickUser();
-  await contentPage.logout();
-  const { loginPage } = t.ctx;
+  await t.ctx.contentPage.clickUser();
+  await t.ctx.contentPage.logout();
 
   // Assert that the key "logged" was removed from local Storage
-  const loggedInUser = await getLocalStorageItem('logged');
-  await t.expect(loggedInUser).eql(null);
+  await assertLocalStorageKeyValue('logged', null);
 
   // Assert that the navigation nav is NOT shown and the login section is shown
-  await t
-    .expect(Selector(contentPage.navigationNav).getStyleProperty('display'))
-    .eql('none');
-  await t
-    .expect(Selector(loginPage.loginSection).getStyleProperty('display'))
-    .eql('flex');
+  await assertDisplayValue(t.ctx.contentPage.navigationNavSelector, 'none');
+  await assertDisplayValue(t.ctx.loginPage.loginSectionSelector, 'flex');
 });

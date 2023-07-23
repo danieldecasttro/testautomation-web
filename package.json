@@ -6,15 +6,16 @@
   "scripts": {
     "format": "prettier . --write",
     "test": "testcafe chrome:headless tests",
-    "test:headful": "testcafe chrome tests",
     "test:firefox": "testcafe firefox:headless tests",
-    "test:firefox:headful": "testcafe firefox tests",
     "test:safari": "testcafe safari:headless tests",
     "test:all": "testcafe chrome:headless,firefox:headless tests",
+    "test:headful": "testcafe chrome tests",
+    "test:firefox:headful": "testcafe firefox tests",
+    "test:safari:headful": "testcafe safari tests",
     "test:all:headful": "testcafe chrome,firefox,safari tests"
   },
   "keywords": [],
-  "author": "",
+  "author": "Daniel Castro",
   "license": "ISC",
   "devDependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
