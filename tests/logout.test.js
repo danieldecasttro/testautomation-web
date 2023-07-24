@@ -1,9 +1,10 @@
-import { Selector, t, ClientFunction } from 'testcafe';
+import { ClientFunction } from 'testcafe';
 import { validCredentials } from './data/testUsers';
 import { createPage } from './page-factory/factory';
 import {
-  assertDisplayValue,
   assertLocalStorageKeyValue,
+  assertElementVisible,
+  assertElementNotVisible,
 } from './helpers/assertions';
 
 const envConfig = require('./env.config');
@@ -23,6 +24,8 @@ fixture('Logout')
       validCredentials[0].email,
       validCredentials[0].password,
     );
+
+    // After performing the login we need an instance of the Content page
     t.ctx.contentPage = createPage('content');
   });
 
@@ -34,6 +37,6 @@ test('Successful logout', async (t) => {
   await assertLocalStorageKeyValue('logged', null);
 
   // Assert that the navigation nav is NOT shown and the login section is shown
-  await assertDisplayValue(t.ctx.contentPage.navigationNavSelector, 'none');
-  await assertDisplayValue(t.ctx.loginPage.loginSectionSelector, 'flex');
+  await assertElementNotVisible(t.ctx.contentPage.navigationNavSelector);
+  await assertElementVisible(t.ctx.loginPage.loginSectionSelector);
 });
